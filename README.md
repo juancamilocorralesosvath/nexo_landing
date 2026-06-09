@@ -1,304 +1,297 @@
 # Handoff: NEXO SAS Landing Page
+**Versión actualizada — Junio 2026**
 
 ## Overview
-This is the redesigned marketing landing page for **NEXO SAS**, a Colombian human resources consulting company. The page covers the full visitor journey: hero branding, service showcase, company stats, about section, job listings, testimonials, and a contact CTA.
+Landing page de marketing para **NEXO SAS**, consultora colombiana de Recursos Humanos. Cubre el flujo completo del visitante: hero, diferenciadores, servicios, sobre nosotros, ofertas de empleo, proceso y CTA.
 
 ---
 
-## About the Design Files
-The files in this bundle are **high-fidelity design references created in HTML/CSS** — they are working prototypes showing the intended look, content, and interactive behavior. They are **not** production code to copy directly.
+## Archivos
 
-The task is to **recreate these designs in the target codebase's environment** (Next.js, React, Vue, etc.) using its established patterns, component libraries, and routing system. If no framework is chosen yet, **Next.js + Tailwind CSS** is the recommended stack given the nature of this project (marketing site + future job portal).
+```
+design_handoff_nexo_landing/
+├── README.md                ← Este archivo
+├── Landing Page.html        ← Prototipo hi-fi completo (abrir en navegador)
+└── assets/
+    └── nexo-logo.svg        ← Logo con fondo transparente
+```
 
-## Fidelity
-**High-fidelity.** Colors, typography, spacing, animations, and copy are all final. Recreate pixel-perfectly using the codebase's libraries and conventions.
+Abrir `Landing Page.html` directamente en cualquier navegador moderno. No requiere build.
+
+---
+
+## Stack recomendado
+**Next.js 14 + Tailwind CSS** para sitio estático de marketing con portal de empleos futuro.
 
 ---
 
 ## Design Tokens
 
-### Colors
-```
---bg:           oklch(0.985 0.006 78)   ≈ #FDFAF5  (warm white page bg)
---bg-surface:   oklch(0.960 0.012 80)   ≈ #F5EFE4  (slightly darker warm surface)
---text:         oklch(0.13 0.015 55)    ≈ #1E1810   (warm near-black)
---muted:        oklch(0.50 0.012 65)    ≈ #7A6F61   (warm gray for secondary text)
---border:       oklch(0.875 0.010 78)   ≈ #DDD5C8   (warm border color)
---gold:         oklch(0.82 0.155 80)    ≈ #FCCA50   (primary brand yellow/gold)
---gold-dk:      oklch(0.54 0.138 72)    ≈ #D19B2D   (dark gold — text on light bg)
---gold-lt:      oklch(0.95 0.050 82)    ≈ #FDF3D5   (light gold tint — chip/tag bg)
---gold-deep:    oklch(0.42 0.110 68)    ≈ #A07418   (deep gold — rarely used)
---dark:         oklch(0.13 0.012 55)    ≈ #1E1A14   (dark panel bg)
+### Colores
+```css
+--bg:           oklch(0.985 0.006 78)   /* ≈ #FDFAF5  fondo crema cálido */
+--bg-surface:   oklch(0.960 0.012 80)   /* ≈ #F5EFE4  superficie ligeramente más oscura */
+--text:         oklch(0.13  0.015 55)   /* ≈ #1E1810  casi negro cálido */
+--muted:        oklch(0.50  0.012 65)   /* ≈ #7A6F61  gris cálido secundario */
+--border:       oklch(0.875 0.010 78)   /* ≈ #DDD5C8  borde cálido */
+--gold:         oklch(0.82  0.155 80)   /* ≈ #FCCA50  dorado primario de marca */
+--gold-dk:      oklch(0.54  0.138 72)   /* ≈ #D19B2D  dorado oscuro — texto sobre claro */
+--gold-lt:      oklch(0.95  0.050 82)   /* ≈ #FDF3D5  tinte dorado claro — chips/tags */
+--gold-deep:    oklch(0.42  0.110 68)   /* ≈ #A07418  dorado profundo — uso raro */
+--dark:         oklch(0.13  0.012 55)   /* ≈ #1E1A14  panel oscuro */
 --white:        #ffffff
 ```
 
-### Typography
+### Tipografía
 ```
-Headings:  Montserrat (Google Fonts) — weights 700, 800, 900
-Body:      DM Sans (Google Fonts) — weights 300, 400, 500
+Títulos / etiquetas:  Montserrat — pesos 700, 800, 900
+Cuerpo:               DM Sans — pesos 300, 400, 500
 
-Font import:
+Google Fonts import:
 https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap
 ```
 
-### Spacing
-- Page horizontal padding: `48px` (sides)
-- Section vertical rhythm: `80px` top padding for sections
-- Card gap: `16px`
-- Component internal padding: `24–32px`
+### Espaciado
+- Padding horizontal de página: `48px`
+- Ritmo vertical entre secciones: `80px` padding-top
+- Gap entre cards: `16px`
+- Padding interno de componentes: `24–32px`
 
 ### Border Radius
-```
-Cards / tiles:      10–12px
-Large panels:       18–22px
-Buttons:            6px
-Pills / chips:      4px
-Nav CTA button:     6px
-```
+| Elemento | Radio |
+|----------|-------|
+| Cards / tiles grandes | 18–22px |
+| Cards medianas | 12–16px |
+| Botones | 6px |
+| Chips / badges | 4px |
+| Tabs (about) | 6px |
+| Panel tabs about | 12px |
+| Íconos diferenciadores | 8px |
 
-### Shadows
+### Sombras
 ```
-Card hover:   0 14px 36px oklch(0.82 0.155 80 / 0.12)   (gold-tinted)
-Button hover: 0 8px 28px oklch(0.54 0.138 72 / 0.35)
-Nav scrolled: 0 2px 28px oklch(0 0 0 / 0.08)
+Card hover (gold):    0 14px 36px oklch(0.82 0.155 80 / 0.12)
+Botón hover (gold):   0 8px 28px oklch(0.54 0.138 72 / 0.35)
+Jobs CTA btn:         0 4px 20px oklch(0.82 0.155 80 / 0.30)
+Nav scrolled:         0 2px 28px oklch(0 0 0 / 0.08)
 ```
 
 ---
 
-## Sections & Components
+## Secciones & Componentes
 
-### 1. Navigation (Fixed)
-- **Position:** Fixed top, full width, z-index 200
-- **Height:** ~72px (14px vertical padding)
-- **Background:** `--bg` at 92% opacity + `backdrop-filter: blur(20px) saturate(1.5)`
-- **Border:** 1px bottom border in `--border`
-- **On scroll:** adds `box-shadow: 0 2px 28px oklch(0 0 0 / 0.08)`
-- **Logo:** SVG file (`assets/nexo-logo.svg`), height `64px`
-- **Links:** Montserrat 600, 13px, uppercase, letter-spacing 0.03em, color `--muted` → `--text` on hover
-- **CTA Button ("Contáctanos"):** Background `--gold`, color `--dark`, padding `10px 22px`, border-radius `6px`, hover → `--gold-dk` + white text
+### 1. Navigation (fija)
+- Fixed top, z-index 200, blur backdrop
+- Logo SVG height `64px`
+- Links: Montserrat 600 13px uppercase, `--muted` → `--text` hover
+- CTA "Contáctanos": bg `--gold`, color `--dark`, border-radius 6px
+- `.scrolled` class se añade cuando `scrollY > 50` (añade box-shadow)
 
-### 2. Hero Brand Text
-- **Padding:** `120px 48px 0`
-- **"NEXO®_SAS":** Montserrat 900, `clamp(36px, 5.2vw, 80px)`, color `--text`, letter-spacing 0.01em
-- **"RRHH · Colombia":** Same size/weight, color `--muted`
-- **`®` superscript:** 30% size, color `--gold-dk`
-- **Entrance animation:** `translateY(20px → 0)` over 700ms ease on page load
+**Links de navegación:**
+```
+Servicios → #servicios
+Nosotros  → #nosotros
+Empleos   → #empleos
+Proceso   → #proceso
+Contáctanos → #contacto
+```
 
-### 3. Hero Stage (Dark Gradient Banner)
-- **Margin:** `20px 48px 0`
-- **Height:** `440px`
-- **Border-radius:** `18px`
-- **Background:** Animated gradient cycling between dark warm tones:
-  ```css
-  background: linear-gradient(-45deg,
-    oklch(0.18 0.020 55),
-    oklch(0.26 0.060 65),
-    oklch(0.32 0.100 75),
-    oklch(0.22 0.040 60));
-  background-size: 400% 400%;
-  animation: gradshift 14s ease infinite;
-  ```
-- **Gold shimmer overlay:** `radial-gradient(ellipse 60% 80% at 70% 40%, gold/0.18 → transparent)`
-- **3 floating orbs:** Blurred circles (filter: blur 70px) with slow float animation
-- **Right sidebar social buttons:** `in`, `ig`, `fb` — 36×36px rounded squares, semi-transparent white bg, gold text
-- **Bottom content (gradient overlay):** 4 avatar initials + "+500 empresas confían en nosotros" label + large headline
-  - Headline: Montserrat 800, `clamp(24px, 3vw, 44px)`, white, with "talento" in `--gold`
-- **Entrance animation:** `scale(0.98 → 1)` over 900ms ease with 200ms delay
+### 2. Hero Brand
+- Padding top: `120px`
+- "NEXO®_SAS": Montserrat 900, `clamp(36px, 5.2vw, 80px)`, `--text`
+- "RRHH · Colombia": misma fuente/tamaño, color `--muted`
+- `®`: superscript 30% size, `--gold-dk`
+- Entrada: `translateY(20px → 0)` 700ms ease, 80ms delay
 
-### 4. Hero Service Tiles
-- **Layout:** 3-column CSS grid, `gap: 10px`, `margin: 10px 48px 0`
-- **Each tile:** White bg, 1px border `--border`, `border-radius: 10px`, `padding: 16px 22px`, flex row with gap 14px
-- **Number:** Montserrat 700, 11px, `--gold-dk`, letter-spacing 0.05em
-- **Label:** Montserrat 700, 13.5px, `--text`
-- **Hover:** border → `--gold`, `translateY(-3px)`, gold-tinted shadow
-- **Click:** smooth scroll to `#servicios`
+### 3. Hero Stage (banner oscuro animado)
+- `margin: 20px 48px 0`, height `440px`, border-radius `18px`
+- Gradiente animado que cicla entre tonos cálidos oscuros (14s ease infinite)
+- Shimmer dorado radial overlay (70% 40%, gold/0.18)
+- 3 orbs difuminadas flotando (filter: blur 70px, animación 7–12s)
+- Sidebar de redes: in/ig/fb — botones 36×36 semitransparentes con texto dorado
+- Bottom: avatares iniciales + label "+500 empresas" + headline con "talento" en `--gold`
+- Entrada: `scale(0.98 → 1)` 900ms ease, 200ms delay
 
-### 5. Stats Band
-- **Layout:** 4-column grid, full width, top + bottom border `--border`
-- **Each stat:** `padding: 36px 48px`, right border except last
-- **Number:** Montserrat 900, `clamp(40px, 4.2vw, 60px)`, `--text`; accent digit in `--gold-dk`
-- **Counter animation:** Counts up from 0 on IntersectionObserver trigger (threshold 0.4)
-  - `38+` years — 1600ms
-  - `500+` companies — 1800ms
-  - `8K+` talents — 2000ms
-  - `98%` — static (no animation)
-- **Label:** DM Sans 400, 13px, `--muted`
+### 4. Hero Tiles (3 columnas)
+- Grid 3 col, `gap: 10px`, `margin: 10px 48px 0`
+- Fondo blanco, 1px border, border-radius 10px
+- Número: Montserrat 700 11px `--gold-dk`; Label: Montserrat 700 13.5px `--text`
+- Hover: border dorado, translateY(-3px), sombra dorada
+- Click: scroll suave a `#servicios`
+- Entrada: `translateY(18px → 0)` 700ms, 400ms delay
+
+### 5. Diferenciadores (reemplaza stats)
+- Grid 4 columnas, full width, bordes top/bottom + separadores entre columnas
+- `padding: 36px 48px` por columna
+- Ícono SVG 18px en contenedor 36×36 bg `--gold-lt`, border-radius 8px
+- Título: Montserrat 800 15px `--text`
+- Descripción: DM Sans 13px `--muted`, line-height 1.65
+
+**Los 4 diferenciadores:**
+| # | Ícono | Título | Descripción |
+|---|-------|--------|-------------|
+| 1 | layers | Proceso Completamente Tercerizado | Delegá todo el ciclo de contratación. Tu equipo se enfoca en lo que realmente importa. |
+| 2 | globe | Cobertura en todo el país | Reclutamos talento en las principales ciudades de Colombia, sin importar el sector. |
+| 3 | users | Perfiles para toda industria | Desde cargos operativos hasta directivos: encontramos el candidato que tu empresa necesita. |
+| 4 | shield | Cumplimiento legal garantizado | Contratos, seguridad social y nómina 100% bajo la normativa colombiana vigente. |
 
 ### 6. Ticker (Marquee)
-- **Layout:** Full-width, `border-top + border-bottom` in `--border`, bg `--bg-surface`
-- **Animation:** Infinite horizontal scroll left over 28s, pauses on hover
-- **Items:** Montserrat 700, 11.5px, uppercase, letter-spacing 0.10em, `--muted`; `◆` separator in `--gold`
-- **Duplicate content** for seamless loop (items repeated twice)
+- Full width, bg `--bg-surface`, bordes top/bottom
+- Montserrat 700 11.5px uppercase, separador `◆` dorado
+- CSS: `translateX(0 → -50%)` 28s linear infinite, pausa en hover
+- Ítems duplicados para loop seamless
 
-### 7. Services Section
-- **Section header:** Flex row with `sec-title` (Montserrat 900, clamp 30→60px) + `sec-tag` label
-- **Tab strip:** 5-column grid, border + rounded top corners
-  - Each tab: `padding: 18px 14px`, bg `--bg-surface`, hover → `--gold-lt`
-  - **Active tab:** bg `--white`, `border-bottom: 2px solid --gold`, z-index 1
-  - Tab number: Montserrat 700, 10px, `--gold-dk`
-  - Tab label: Montserrat 800, 13px, `--text`; active → `--gold-dk`
-- **Content panel:** 2-column grid (`1fr 1.8fr`), border, rounded bottom corners, min-height 340px
-  - Left: image placeholder (hatched pattern in `--gold-lt`, monospace hint text)
-  - Right: `padding: 44px 48px`, service number + title + description + chips
-  - Title: Montserrat 900, `clamp(22px, 2.5vw, 34px)`
-  - Description: DM Sans 400, 14px, `--muted`, line-height 1.75
-  - Chips: 1px border `--border`, border-radius 4px, Montserrat 600, 11.5px, `--muted`
-- **Tab switching:** JS updates `#svcNum`, `#svcTitle`, `#svcDesc`, `#svcImg[data-hint]`, `#svcChips` on click
+### 7. Servicios (Tabs)
+- Header de sección: `sec-title` + `sec-tag`
+- Tab strip: grid 5 columnas, bg `--bg-surface`, hover `--gold-lt`
+- Tab activa: bg `--white`, `border-bottom: 2px solid --gold`, z-index 1
+- Panel: grid `1fr 1.8fr`, min-height 340px
+  - Izquierda: placeholder con patrón hatch dorado (reemplazar con foto real)
+  - Derecha: número + título + descripción + chips
+- JS actualiza `#svcNum`, `#svcTitle`, `#svcDesc`, `#svcImg[data-hint]`, `#svcChips`
 
-**Service data:**
-| # | Title | Description | Chips |
-|---|-------|-------------|-------|
-| 01 | Reclutamiento de Candidatos | Identificamos y atraemos el talento idóneo mediante headhunting, portales especializados y nuestra red de profesionales en todo el país. | Head Hunting, Atracción de Talento, Perfiles Técnicos |
-| 02 | Selección de Personal | Evaluamos competencias, cultura organizacional y potencial de cada candidato con herramientas validadas para garantizar la contratación más acertada. | Assessment Centers, Pruebas Psicotécnicas, Entrevistas por Competencias |
-| 03 | Contratación Temporal | Soluciones flexibles para proyectos específicos y picos de demanda. Gestionamos toda la carga administrativa y legal de sus colaboradores temporales. | Outsourcing, Personal en Misión, Administración de Nómina |
-| 04 | Consultoría en RRHH | Acompañamos a su organización en la gestión integral del capital humano: desde la estrategia de talento hasta la transformación organizacional. | Clima Organizacional, Diseño de Cargos, Transformación Cultural |
-| 05 | Formación y Desarrollo | Programas de capacitación diseñados a medida para potenciar el desempeño y la motivación de sus equipos en toda Colombia. | Capacitación In-house, Coaching Ejecutivo, Liderazgo |
+**Datos de los 5 servicios:**
+| # | Título | Chips |
+|---|--------|-------|
+| 01 | Reclutamiento de Candidatos | Head Hunting · Atracción de Talento · Perfiles Técnicos |
+| 02 | Selección de Personal | Assessment Centers · Pruebas Psicotécnicas · Entrevistas por Competencias |
+| 03 | Contratación Temporal | Outsourcing · Personal en Misión · Administración de Nómina |
+| 04 | Consultoría en RRHH | Clima Organizacional · Diseño de Cargos · Transformación Cultural |
+| 05 | Formación y Desarrollo | Capacitación In-house · Coaching Ejecutivo · Liderazgo |
 
-### 8. About (Dark Panel)
-- **Margin:** `80px 48px`
-- **Background:** `--dark`, `border-radius: 22px`, `padding: 70px`
-- **Layout:** 2-column grid `1fr 1fr`, gap 72px, centered
-- **Left:** Image placeholder (aspect-ratio 4/3, dark bg with subtle gold hatch)
-- **Right:**
-  - Label: Montserrat 700, 10px, uppercase, letter-spacing 0.14em, `--gold`
-  - Title: Montserrat 900, `clamp(26px, 3vw, 44px)`, white
-  - Body: DM Sans, 14px, `oklch(1 0 0 / 0.54)`, line-height 1.8
-  - Stats grid: 3 columns, `38+` / `500+` / `15+` in Montserrat 900, 36px, `--gold`
-  - Buttons: "Conoce Más →" (gold bg) + "Ver Servicios" (ghost white border)
+### 8. Sobre Nosotros (panel oscuro + tabs)
+- bg `--dark`, border-radius 22px, padding 70px, grid `1fr 1fr`
+- **Izquierda:** placeholder imagen (aspect-ratio 4/3, reemplazar con foto real)
+- **Derecha:**
+  - Label: Montserrat 700 10px uppercase `--gold`
+  - Título: Montserrat 900, `clamp(26px, 3vw, 44px)`, white
+  - **Tab strip** (3 tabs — Misión · Método · Valores):
+    - Inactivo: borde `oklch(1 0 0 / 0.12)`, color `oklch(1 0 0 / 0.38)`
+    - Activo: bg `--gold`, color `--dark`
+    - Hover inactivo: bg `oklch(1 0 0 / 0.06)`
+  - **Panel de contenido:** bg `oklch(1 0 0 / 0.05)`, borde `oklch(1 0 0 / 0.10)`, border-radius 12px, padding 28px 32px, min-height 130px
+    - Título panel: Montserrat 800 17px white
+    - Cuerpo panel: DM Sans 14px `oklch(1 0 0 / 0.52)`, line-height 1.75
+    - Transición al cambiar: fade-out 120ms → swap contenido → fade-in 250ms
+  - Botones: "Conoce Más →" (gold) + "Ver Servicios" (ghost blanco)
 
-**Stats:**
-- `38+` — Años de trayectoria
-- `500+` — Clientes activos
-- `15+` — Ciudades de Colombia
+**Contenido de los 3 tabs:**
+| Tab | Título | Cuerpo |
+|-----|--------|--------|
+| Misión | Conectamos talento con oportunidades reales | Somos la agencia que gestiona todo el ciclo de contratación por ti. Tu empresa se enfoca en crecer; nosotros encontramos a las personas que lo hacen posible. |
+| Método | Proceso riguroso, resultados en tiempo récord | Desde el diagnóstico del perfil hasta la vinculación, cada paso está diseñado para reducir el tiempo de contratación sin sacrificar la calidad del candidato. |
+| Valores | Transparencia y compromiso en cada proceso | Trabajamos con honestidad hacia empresas y candidatos por igual. Construimos relaciones de largo plazo basadas en la confianza y el respeto mutuo. |
 
-### 9. Jobs Section (`#empleos`)
-- **Layout:** Full width within `padding: 80px 0`, `border-top: 1px solid --border`
-- **Header row:** flex, space-between
-  - Left: section tag + `sec-title` "Trabaja con nosotros" + description text
-  - Right: CTA button + "Portal en construcción · Próximamente disponible" note
-- **CTA Button:** Gold bg, dark text, `padding: 16px 32px`, border-radius 8px, briefcase SVG icon, strong gold box-shadow
-  - Hover: `--gold-dk` bg, white text, `translateY(-2px)`, deeper shadow
-  - **⚠️ LINK TO CONNECT LATER:** This button should link to the external job portal URL when it's ready. Currently href="#".
-- **Job cards grid:** 3 columns, gap 16px
-  - Each card: white bg, 1px border `--border`, border-radius 12px, `padding: 24px 26px`
-  - Hover: gold border, `translateY(-4px)`, gold shadow
-  - Department tag: Montserrat 700, 10px, uppercase, `--gold-dk`
-  - Type badge: Montserrat 600, 11px, bg `--gold-lt`, color `--gold-dk`, border-radius 4px
-  - Title: Montserrat 800, 16px, `--text`
-  - Meta: location + schedule, 12px, `--muted`
-  - "Postularme →" link: `--gold-dk`, Montserrat 700, gap widens on hover
-- **"Ver más vacantes" link** (bottom center): links to job portal
+### 9. Ofertas de Empleo (`#empleos`)
+- `border-top: 1px solid --border`, padding `80px 0`
+- Header: left (tag + título + desc) | right (CTA button + nota)
+- **CTA "Ver todas las vacantes →"**: bg `--gold`, padding `16px 32px`, border-radius 8px, briefcase SVG, gold box-shadow
+  - **⚠️ CONECTAR:** reemplazar `href="#"` con URL del portal ATS cuando esté listo
+- Grid 3 tarjetas con: dept tag (gold-dk) + type badge (gold-lt) + título + meta (ciudad/jornada) + link "Postularme →"
+- "Ver más vacantes" link centrado abajo → también conectar al portal
 
-**Placeholder job cards:**
-| Dept | Type | Title | Location |
-|------|------|-------|----------|
+**Tarjetas de ejemplo (reemplazar con datos reales del ATS):**
+| Dept | Tipo | Título | Ciudad |
+|------|------|--------|--------|
 | Logística | Temporal | Coordinador de Logística | Bogotá |
 | Tecnología | Permanente | Desarrollador Full Stack | Medellín |
 | Ventas | Permanente | Ejecutivo Comercial Senior | Cali |
 
-### 10. Testimonials
-- **Section header:** same as other sections
-- **Grid:** 3 columns, `gap: 16px`, `padding: 0 48px 80px`
-- **Each card:** white bg, 1px border, `border-radius: 16px`, `padding: 30px`
-- **Stars:** 5× `★` in `--gold`
-- **Quote:** DM Sans 400, 14px, italic, `--text`, line-height 1.72
-- **Author avatar:** 42px circle, bg `--gold-lt`, Montserrat 800, 12px, `--gold-dk`
-- **Hover:** gold border, `translateY(-5px)`, gold shadow
+### 10. Proceso (`#proceso`) — reemplaza testimonios
+- Header: `sec-title` "Así trabajamos contigo" + `sec-tag` "Proceso"
+- Timeline horizontal: grid 5 columnas
+- Línea conectora: `::before` pseudo-elemento horizontal (1px `--border`)
+- Punto dorado: círculo 36×36, bg `--gold-lt`, border 2px `--gold`, número dentro
+- Título paso: Montserrat 800 15px `--text`
+- Descripción: DM Sans 13px `--muted`, line-height 1.65
 
-**Testimonial data:**
-| Initials | Name | Role | Quote |
-|----------|------|------|-------|
-| MR | María Rodríguez | Directora de RRHH — Grupo XYZ | "NEXO transformó nuestra manera de reclutar…" |
-| CP | Carlos Pedraza | CEO — Manufactura del Valle S.A. | "Su acompañamiento en contratación temporal…" |
-| LG | Laura Gómez | Gerente General — TechCo Colombia | "Llevamos 5 años trabajando con NEXO…" |
+**Los 5 pasos:**
+| # | Título | Descripción |
+|---|--------|-------------|
+| 01 | Diagnóstico | Conocemos tu empresa, la vacante y el perfil que necesitas cubrir. |
+| 02 | Atracción de Talento | Activamos portales especializados, red de referidos y headhunting activo. |
+| 03 | Evaluación | Filtramos hojas de vida, entrevistamos y aplicamos pruebas psicotécnicas validadas. |
+| 04 | Presentación de Candidatos | Te entregamos una terna de perfiles preseleccionados listos para entrevistar. |
+| 05 | Acompañamiento | Te acompañamos hasta la vinculación exitosa y el seguimiento postcontratación. |
 
-### 11. CTA Band
-- **Margin:** `0 48px 80px`
-- **Background:** `--dark`, `border-radius: 22px`, `padding: 68px 64px`
-- **Layout:** flex row, space-between, with decorative radial gold orb (right side, blurred)
-- **Title:** Montserrat 900, `clamp(24px, 3vw, 42px)`, white, "talento" in `--gold`
-- **Buttons:** "Contáctanos →" (gold) + "Ofertas de Empleo" (ghost dark border)
+### 11. CTA Band (`#contacto`)
+- bg `--dark`, border-radius 22px, padding `68px 64px`, flex row space-between
+- Orb decorativo radial derecha (blurred gold/0.10)
+- Título: Montserrat 900 `clamp(24px, 3vw, 42px)`, "talento" en `--gold`
+- Botones: "Contáctanos →" (gold, `mailto:contacto@nexosas.com`) + "Ofertas de Empleo" (ghost dark)
 
 ### 12. Footer
-- **Border top:** 1px `--border`, `padding: 48px`, 2-column grid
-- **Left:** Logo SVG (48px tall) + description + copyright
-- **Right:** Links grid — Servicios, Nosotros, Empleos, Contacto, LinkedIn, Instagram, Privacidad
-- **Link style:** Montserrat 600, 11.5px, uppercase, letter-spacing 0.02em, `--muted` → `--gold-dk` hover
+- Border top, padding `48px`, grid `1fr 1fr`
+- Logo SVG 48px + descripción + copyright
+- Links: Montserrat 600 11.5px uppercase, `--muted` → `--gold-dk` hover
 
 ---
 
-## Interactions & Animations
+## Interacciones & Animaciones
 
-### Scroll Reveal
-All `.rv` elements animate `translateY(26px → 0)` over 700ms ease when they enter the viewport (IntersectionObserver, threshold 0.10). Delays: `.d1` = 100ms, `.d2` = 200ms.
+### Scroll Reveal (`.rv`)
+`translateY(26px → 0)` 700ms ease vía IntersectionObserver (threshold 0.10). Delays: `.d1` = 100ms, `.d2` = 200ms.
 
-### Counter Animation
-Stats band numbers count up from 0 with cubic ease-out when scrolled into view (threshold 0.4, triggered once).
-
-### Hero Entrance Sequence
+### Hero Entrance
 ```
-80ms  → hero brand text slides in
+80ms  → hero brand slides in
 200ms → hero stage scales in
 400ms → hero tiles slide in
 ```
 
-### Service Tabs
-On click, JS updates the panel content (number, title, description, image hint, chips) and toggles `.active` on the tab strip. No page reload.
-
 ### Ticker
-CSS `translateX(0 → -50%)` loop over 28s linear. Pauses on hover (`animation-play-state: paused`).
+CSS `translateX(0 → -50%)` 28s linear infinite. Pausa en hover.
 
-### Gradient Animation
-Hero stage background cycles `background-position` across 400% × 400% gradient over 14s ease infinite.
+### Gradiente Hero
+`background-position` cicla en gradiente 400%×400% cada 14s ease infinite.
 
-### Floating Orbs
-3 blurred circles with slow `translate` loop animations (7–12s each, staggered).
+### Orbs flotantes
+3 círculos difuminados con `translate` loop de 7–12s, desfasados.
+
+### Service Tabs
+Click → quita/añade `.active` en tab strip → actualiza DOM del panel (sin recarga).
+
+### About Tabs
+Click → fade-out 120ms → swap contenido → fade-in 250ms.
 
 ### Nav
-Adds `.scrolled` class (shadow) when `window.scrollY > 50`.
+Añade `.scrolled` (box-shadow) cuando `scrollY > 50`.
 
 ---
 
-## State Management Needed
+## Estado a manejar
 
-| State | Type | Description |
-|-------|------|-------------|
-| `activeServiceTab` | `number` (0–4) | Which service tab is selected |
-| `navScrolled` | `boolean` | Whether page has scrolled >50px |
-| `countersAnimated` | `boolean` | Whether stat counters have run (run once) |
-| `revealedElements` | `Set<Element>` | Which elements have animated in |
+| Estado | Tipo | Descripción |
+|--------|------|-------------|
+| `activeServiceTab` | `number` 0–4 | Tab activa de servicios |
+| `activeAboutTab` | `number` 0–2 | Tab activa de Sobre Nosotros |
+| `navScrolled` | `boolean` | `scrollY > 50` |
+| `revealedElements` | `Set<Element>` | Elementos con animación de entrada ya ejecutada |
 
 ---
 
 ## Assets
 
-| File | Usage |
-|------|-------|
-| `assets/nexo-logo.svg` | Nav logo + footer logo. Contains gold gradient NEXO letterform + "SAS" in Montserrat Bold. Background transparent. Original dimensions: 725×672px. Use at height 64px in nav, 48px in footer. |
+| Archivo | Uso | Dimensiones |
+|---------|-----|-------------|
+| `assets/nexo-logo.svg` | Nav (64px alto) + Footer (48px alto) | 725×672px original, fondo transparente |
 
-> **Image placeholders:** All section images (hero stage, services, about) are currently CSS placeholders with hatched patterns and monospace hint text describing the intended photo. These need to be replaced with real photography.
-
----
-
-## Future Connections
-
-| Element | What to connect |
-|---------|----------------|
-| "Ver todas las vacantes" button (`#jobsPortalBtn`) | External ATS or job portal URL |
-| "Postularme →" on each job card | Individual job posting URLs |
-| "Contáctanos" (nav + CTA) | Contact form or `mailto:` |
-| LinkedIn / Instagram / Facebook social links | Real social profile URLs |
+### Imágenes pendientes (placeholders activos)
+| Sección | Descripción sugerida |
+|---------|----------------------|
+| Hero stage | Foto de equipo profesional o skyline colombiano |
+| Servicios (panel izq.) | Foto contextual de cada servicio (entrevista, evaluación, etc.) |
+| Sobre Nosotros | Foto del equipo NEXO o reunión corporativa |
 
 ---
 
-## Files in This Package
+## Conexiones pendientes
 
-```
-design_handoff_nexo_landing/
-├── README.md                ← This file
-├── Landing Page.html        ← Full hi-fi prototype (open in browser)
-└── assets/
-    └── nexo-logo.svg        ← Brand logo (transparent background)
-```
-
-Open `Landing Page.html` directly in any modern browser to see the full interactive prototype. No build step required.
+| Elemento | Acción |
+|----------|--------|
+| "Ver todas las vacantes" (`#jobsPortalBtn`) | Conectar URL portal ATS |
+| "Postularme →" en cada job card | Conectar URL de cada vacante |
+| "Ver más vacantes" (footer jobs) | Conectar URL portal ATS |
+| "Contáctanos" (nav + CTA) | Confirmar si `mailto:` o formulario embebido |
+| LinkedIn / Instagram / Facebook | URLs de perfiles reales |
+| "Política de Privacidad" | URL página de privacidad |

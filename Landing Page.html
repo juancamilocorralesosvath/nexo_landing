@@ -224,7 +224,7 @@
       font-family: 'Montserrat', sans-serif;
     }
 
-    /* ── STATS BAND ──────────────────────────────── */
+    /* ── DIFERENCIADORES BAND ──────────────────────── */
     .stats-band {
       display: grid; grid-template-columns: repeat(4, 1fr);
       margin: 72px 0 0;
@@ -236,18 +236,75 @@
       border-right: 1px solid var(--border);
     }
     .stat-item:last-child { border-right: none; }
-    .stat-num {
-      font-family: 'Montserrat', sans-serif;
-      font-size: clamp(40px, 4.2vw, 60px);
-      font-weight: 900; line-height: 1;
-      letter-spacing: -0.01em;
-      color: var(--text);
+    .dif-icon {
+      width: 36px; height: 36px; border-radius: 8px;
+      background: var(--gold-lt);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 16px; flex-shrink: 0;
     }
-    .stat-num .acc { color: var(--gold-dk); }
-    .stat-label {
+    .dif-icon svg { display: block; }
+    .dif-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 15px; font-weight: 800;
+      color: var(--text); line-height: 1.2;
+      margin-bottom: 8px;
+    }
+    .dif-desc {
+      font-family: 'DM Sans', sans-serif;
       font-size: 13px; color: var(--muted);
-      margin-top: 8px; font-weight: 400;
-      text-wrap: pretty;
+      line-height: 1.65; text-wrap: pretty;
+    }
+
+    /* ── PROCESO (TIMELINE) ──────────────────────────── */
+    .proceso-wrap {
+      padding: 0 48px 80px;
+    }
+    .proceso-timeline {
+      display: grid; grid-template-columns: repeat(5, 1fr);
+      position: relative;
+      gap: 0;
+    }
+    /* horizontal connector line */
+    .proceso-timeline::before {
+      content: '';
+      position: absolute;
+      top: 18px; left: calc(10% + 18px); right: calc(10% + 18px);
+      height: 1px; background: var(--border);
+      z-index: 0;
+    }
+    .proceso-step {
+      display: flex; flex-direction: column;
+      align-items: flex-start;
+      padding: 0 28px 0 0;
+      position: relative;
+    }
+    .proceso-step:last-child { padding-right: 0; }
+    .proceso-dot-row {
+      display: flex; align-items: center;
+      margin-bottom: 20px; position: relative; z-index: 1;
+    }
+    .proceso-dot {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: var(--gold-lt);
+      border: 2px solid var(--gold);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .proceso-step-num {
+      font-size: 11px; font-weight: 700;
+      color: var(--gold-dk); font-family: 'Montserrat', sans-serif;
+      letter-spacing: 0.08em;
+    }
+    .proceso-step-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 15px; font-weight: 800;
+      color: var(--text); line-height: 1.2;
+      margin-bottom: 8px;
+    }
+    .proceso-step-desc {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px; color: var(--muted);
+      line-height: 1.65; text-wrap: pretty;
     }
 
     /* ── SECTION HEADER ──────────────────────────── */
@@ -559,40 +616,50 @@
     }
     .btn-ghost-w:hover { border-color: var(--gold); color: var(--gold); }
 
-    /* ── TESTIMONIALS ────────────────────────────── */
-    .testi-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 16px; padding: 0 48px 80px;
+    /* ── ABOUT TABS ──────────────────────────────── */
+    .about-tab-strip {
+      display: flex; gap: 8px;
+      margin-top: 14px; margin-bottom: 14px;
     }
-    .testi-card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 16px; padding: 30px;
-      transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
-    }
-    .testi-card:hover {
-      border-color: var(--gold);
-      transform: translateY(-5px);
-      box-shadow: 0 18px 44px oklch(0.82 0.155 80 / 0.12);
-    }
-    .testi-stars { display: flex; gap: 3px; margin-bottom: 16px; }
-    .testi-stars span { color: var(--gold); font-size: 15px; }
-    .testi-quote {
-      font-size: 14px; color: var(--text);
-      line-height: 1.72; margin-bottom: 26px;
-      font-style: italic; text-wrap: pretty;
-    }
-    .testi-author { display: flex; align-items: center; gap: 12px; }
-    .tav {
-      width: 42px; height: 42px; border-radius: 50%;
-      background: var(--gold-lt);
-      display: flex; align-items: center; justify-content: center;
+    .about-tab {
+      background: transparent;
+      border: 1px solid oklch(1 0 0 / 0.12);
+      border-radius: 6px;
+      padding: 10px 18px;
       font-family: 'Montserrat', sans-serif;
-      font-size: 12px; font-weight: 800;
-      color: var(--gold-dk); flex-shrink: 0;
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      color: oklch(1 0 0 / 0.38);
+      cursor: pointer;
+      transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
     }
-    .tav-name { font-weight: 700; font-size: 13.5px; color: var(--text); font-family: 'Montserrat', sans-serif; }
-    .tav-role { font-size: 12px; color: var(--muted); }
+    .about-tab:hover:not(.active) { background: oklch(1 0 0 / 0.06); }
+    .about-tab.active {
+      background: var(--gold);
+      color: var(--dark);
+      border-color: var(--gold);
+    }
+    .about-tab-panel {
+      background: oklch(1 0 0 / 0.05);
+      border: 1px solid oklch(1 0 0 / 0.10);
+      border-radius: 12px;
+      padding: 28px 32px;
+      min-height: 130px;
+      transition: opacity 0.25s ease;
+    }
+    .about-tab-panel-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 17px; font-weight: 800;
+      color: var(--white); line-height: 1.2;
+      margin-bottom: 10px;
+    }
+    .about-tab-panel-body {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px; color: oklch(1 0 0 / 0.52);
+      line-height: 1.75; text-wrap: pretty;
+    }
+
+    /* (testimonials removed — replaced by proceso) */
 
     /* ── CTA BAND ────────────────────────────────── */
     .cta-band {
@@ -697,7 +764,7 @@
     <li><a href="#servicios">Servicios</a></li>
     <li><a href="#nosotros">Nosotros</a></li>
     <li><a href="#empleos">Empleos</a></li>
-    <li><a href="#testimonios">Clientes</a></li>
+    <li><a href="#proceso">Proceso</a></li>
     <li><a href="#contacto" class="nav-cta">Contáctanos</a></li>
   </ul>
 </nav>
@@ -748,23 +815,35 @@
   </div>
 </div>
 
-<!-- ── STATS ─────────────────────────────────────────── -->
+<!-- ── DIFERENCIADORES ──────────────────────────────── -->
 <div class="stats-band rv" id="statsBand">
   <div class="stat-item">
-    <div class="stat-num"><span class="acc" id="s0">0</span>+</div>
-    <div class="stat-label">Años de experiencia en el mercado colombiano</div>
+    <div class="dif-icon">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--gold-dk)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+    </div>
+    <div class="dif-title">Proceso Completamente Tercerizado</div>
+    <div class="dif-desc">Delegá todo el ciclo de contratación. Tu equipo se enfoca en lo que realmente importa.</div>
   </div>
   <div class="stat-item">
-    <div class="stat-num"><span class="acc" id="s1">0</span>+</div>
-    <div class="stat-label">Empresas atendidas a lo largo del país</div>
+    <div class="dif-icon">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--gold-dk)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+    </div>
+    <div class="dif-title">Cobertura en todo el país</div>
+    <div class="dif-desc">Reclutamos talento en las principales ciudades de Colombia, sin importar el sector.</div>
   </div>
   <div class="stat-item">
-    <div class="stat-num"><span class="acc" id="s2">0</span>K+</div>
-    <div class="stat-label">Talentos conectados exitosamente</div>
+    <div class="dif-icon">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--gold-dk)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+    </div>
+    <div class="dif-title">Perfiles para toda industria</div>
+    <div class="dif-desc">Desde cargos operativos hasta directivos: encontramos el candidato que tu empresa necesita.</div>
   </div>
   <div class="stat-item">
-    <div class="stat-num"><span class="acc">98</span>%</div>
-    <div class="stat-label">Tasa de satisfacción de clientes</div>
+    <div class="dif-icon">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--gold-dk)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    </div>
+    <div class="dif-title">Cumplimiento legal garantizado</div>
+    <div class="dif-desc">Contratos, seguridad social y nómina 100% bajo la normativa colombiana vigente.</div>
   </div>
 </div>
 
@@ -845,22 +924,21 @@
     <div>
       <div class="about-label">Sobre Nosotros</div>
       <h2 class="about-title">Potencializa tu empresa con NEXO</h2>
-      <p class="about-body">Somos una empresa comprometida con Colombia y con el desarrollo del talento humano. Con más de tres décadas de experiencia, brindamos soluciones prácticas y eficaces a los requerimientos de Recursos Humanos de nuestros clientes, acompañándolos en cada etapa de su crecimiento.</p>
-      <div class="about-stats">
-        <div>
-          <div class="astat-num">38+</div>
-          <div class="astat-label">Años de trayectoria</div>
-        </div>
-        <div>
-          <div class="astat-num">500+</div>
-          <div class="astat-label">Clientes activos</div>
-        </div>
-        <div>
-          <div class="astat-num">15+</div>
-          <div class="astat-label">Ciudades de Colombia</div>
-        </div>
+
+      <!-- Tab strip -->
+      <div class="about-tab-strip">
+        <button class="about-tab active" onclick="activateAboutTab(0)">Misión</button>
+        <button class="about-tab" onclick="activateAboutTab(1)">Método</button>
+        <button class="about-tab" onclick="activateAboutTab(2)">Valores</button>
       </div>
-      <div class="btn-row">
+
+      <!-- Tab panel -->
+      <div class="about-tab-panel" id="aboutPanel">
+        <div class="about-tab-panel-title" id="aboutPanelTitle">Conectamos talento con oportunidades reales</div>
+        <div class="about-tab-panel-body" id="aboutPanelBody">Somos la agencia que gestiona todo el ciclo de contratación por ti. Tu empresa se enfoca en crecer; nosotros encontramos a las personas que lo hacen posible.</div>
+      </div>
+
+      <div class="btn-row" style="margin-top:28px;">
         <a href="#contacto" class="btn btn-gold">Conoce Más →</a>
         <a href="#servicios" class="btn btn-ghost-w">Ver Servicios</a>
       </div>
@@ -929,45 +1007,65 @@
   </div>
 </section>
 
-<!-- ── TESTIMONIALS ──────────────────────────────────── -->
-<section id="testimonios">
+<!-- ── PROCESO ──────────────────────────────────────── -->
+<section id="proceso">
   <div class="sec-hdr sec-hdr-border rv">
-    <h2 class="sec-title">Lo que dicen nuestros clientes</h2>
-    <div class="sec-tag">Testimonios</div>
+    <h2 class="sec-title">Así trabajamos contigo</h2>
+    <div class="sec-tag">Proceso</div>
   </div>
-  <div class="testi-grid">
-    <div class="testi-card rv">
-      <div class="testi-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-      <p class="testi-quote">"NEXO transformó nuestra manera de reclutar. En tiempo récord encontraron los perfiles exactos que necesitábamos para nuestra expansión regional. Un aliado estratégico de verdad."</p>
-      <div class="testi-author">
-        <div class="tav">MR</div>
-        <div>
-          <div class="tav-name">María Rodríguez</div>
-          <div class="tav-role">Directora de RRHH — Grupo XYZ</div>
+  <div class="proceso-wrap rv">
+    <div class="proceso-timeline">
+
+      <div class="proceso-step">
+        <div class="proceso-dot-row">
+          <div class="proceso-dot">
+            <span class="proceso-step-num">01</span>
+          </div>
         </div>
+        <div class="proceso-step-title">Diagnóstico</div>
+        <div class="proceso-step-desc">Conocemos tu empresa, la vacante y el perfil que necesitas cubrir.</div>
       </div>
-    </div>
-    <div class="testi-card rv d1">
-      <div class="testi-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-      <p class="testi-quote">"Su acompañamiento en contratación temporal nos dio la flexibilidad que necesitábamos durante nuestro pico de producción. Excelente gestión y total transparencia."</p>
-      <div class="testi-author">
-        <div class="tav">CP</div>
-        <div>
-          <div class="tav-name">Carlos Pedraza</div>
-          <div class="tav-role">CEO — Manufactura del Valle S.A.</div>
+
+      <div class="proceso-step">
+        <div class="proceso-dot-row">
+          <div class="proceso-dot">
+            <span class="proceso-step-num">02</span>
+          </div>
         </div>
+        <div class="proceso-step-title">Atracción de Talento</div>
+        <div class="proceso-step-desc">Activamos portales especializados, red de referidos y headhunting activo.</div>
       </div>
-    </div>
-    <div class="testi-card rv d2">
-      <div class="testi-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-      <p class="testi-quote">"Llevamos 5 años trabajando con NEXO. Su equipo entiende profundamente nuestra cultura organizacional y eso marca toda la diferencia en cada proceso de selección."</p>
-      <div class="testi-author">
-        <div class="tav">LG</div>
-        <div>
-          <div class="tav-name">Laura Gómez</div>
-          <div class="tav-role">Gerente General — TechCo Colombia</div>
+
+      <div class="proceso-step">
+        <div class="proceso-dot-row">
+          <div class="proceso-dot">
+            <span class="proceso-step-num">03</span>
+          </div>
         </div>
+        <div class="proceso-step-title">Evaluación</div>
+        <div class="proceso-step-desc">Filtramos hojas de vida, entrevistamos y aplicamos pruebas psicotécnicas validadas.</div>
       </div>
+
+      <div class="proceso-step">
+        <div class="proceso-dot-row">
+          <div class="proceso-dot">
+            <span class="proceso-step-num">04</span>
+          </div>
+        </div>
+        <div class="proceso-step-title">Presentación de Candidatos</div>
+        <div class="proceso-step-desc">Te entregamos una terna de perfiles preseleccionados listos para entrevistar.</div>
+      </div>
+
+      <div class="proceso-step">
+        <div class="proceso-dot-row">
+          <div class="proceso-dot">
+            <span class="proceso-step-num">05</span>
+          </div>
+        </div>
+        <div class="proceso-step-title">Acompañamiento</div>
+        <div class="proceso-step-desc">Te acompañamos hasta la vinculación exitosa y el seguimiento postcontratación.</div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -1026,15 +1124,7 @@
     requestAnimationFrame(step);
   }
 
-  let countered = false;
-  new IntersectionObserver((entries) => {
-    if (entries[0].isIntersecting && !countered) {
-      countered = true;
-      animCount(document.getElementById('s0'), 38, 1600);
-      animCount(document.getElementById('s1'), 500, 1800);
-      animCount(document.getElementById('s2'), 8, 2000);
-    }
-  }, { threshold: 0.4 }).observe(document.getElementById('statsBand'));
+  // (counter animation removed — statsBand now shows differentiators)
 
   // Service tabs
   const svcData = [
@@ -1053,6 +1143,33 @@
     document.getElementById('svcDesc').textContent = d.desc;
     document.getElementById('svcImg').setAttribute('data-hint', d.hint);
     document.getElementById('svcChips').innerHTML = d.chips.map(c => `<span class="svc-chip">${c}</span>`).join('');
+  }
+
+  // About tabs
+  const aboutData = [
+    {
+      title: 'Conectamos talento con oportunidades reales',
+      body: 'Somos la agencia que gestiona todo el ciclo de contratación por ti. Tu empresa se enfoca en crecer; nosotros encontramos a las personas que lo hacen posible.'
+    },
+    {
+      title: 'Proceso riguroso, resultados en tiempo récord',
+      body: 'Desde el diagnóstico del perfil hasta la vinculación, cada paso está diseñado para reducir el tiempo de contratación sin sacrificar la calidad del candidato.'
+    },
+    {
+      title: 'Transparencia y compromiso en cada proceso',
+      body: 'Trabajamos con honestidad hacia empresas y candidatos por igual. Construimos relaciones de largo plazo basadas en la confianza y el respeto mutuo.'
+    }
+  ];
+
+  function activateAboutTab(idx) {
+    document.querySelectorAll('.about-tab').forEach((t, i) => t.classList.toggle('active', i === idx));
+    const panel = document.getElementById('aboutPanel');
+    panel.style.opacity = '0';
+    setTimeout(() => {
+      document.getElementById('aboutPanelTitle').textContent = aboutData[idx].title;
+      document.getElementById('aboutPanelBody').textContent = aboutData[idx].body;
+      panel.style.opacity = '1';
+    }, 120);
   }
 
   // Nav scroll
