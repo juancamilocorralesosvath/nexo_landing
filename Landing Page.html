@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NEXO SAS — Recursos Humanos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:           oklch(0.985 0.006 78);
+      --bg-surface:   oklch(0.960 0.012 80);
+      --text:         oklch(0.13  0.015 55);
+      --muted:        oklch(0.50  0.012 65);
+      --border:       oklch(0.875 0.010 78);
+      --gold:         oklch(0.82  0.155 80);
+      --gold-dk:      oklch(0.54  0.138 72);
+      --gold-lt:      oklch(0.95  0.050 82);
+      --gold-deep:    oklch(0.42  0.110 68);
+      --dark:         oklch(0.13  0.012 55);
+      --white:        #ffffff;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', system-ui, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ──────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 48px;
+      background: oklch(0.985 0.006 78 / 0.92);
+      backdrop-filter: blur(20px) saturate(1.5);
+      border-bottom: 1px solid var(--border);
+      transition: box-shadow 0.3s;
+    }
+    nav.scrolled { box-shadow: 0 2px 28px oklch(0 0 0 / 0.08); }
+
+    .nav-logo {
+      display: flex; align-items: center; gap: 12px;
+      text-decoration: none;
+    }
+    .nav-logo img {
+      height: 64px; width: auto; display: block;
+    }
+
+    .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
+    .nav-links a {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13px; font-weight: 600;
+      letter-spacing: 0.03em; color: var(--muted);
+      text-decoration: none; transition: color 0.2s;
+      text-transform: uppercase;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    .nav-cta {
+      background: var(--gold) !important;
+      color: var(--dark) !important;
+      padding: 10px 22px; border-radius: 6px;
+      transition: background 0.25s, transform 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--gold-dk) !important; color: white !important; transform: scale(1.03) !important; }
+
+    /* ── HERO BRAND ──────────────────────────────── */
+    .hero-brand-wrap {
+      padding: 120px 48px 0;
+      transform: translateY(20px);
+      transition: transform 0.7s ease;
+    }
+    .hero-brand-wrap.vis { transform: translateY(0); }
+
+    .hero-brand {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(36px, 5.2vw, 80px);
+      font-weight: 900;
+      letter-spacing: 0.01em;
+      line-height: 1;
+      color: var(--text);
+    }
+    .hero-brand sup {
+      font-size: 0.30em; vertical-align: super;
+      font-weight: 600; color: var(--gold-dk);
+    }
+    .hero-brand-tagline {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(36px, 5.2vw, 80px);
+      font-weight: 900;
+      letter-spacing: 0.01em;
+      line-height: 1;
+      color: var(--muted);
+    }
+
+    /* ── HERO STAGE ──────────────────────────────── */
+    .hero-stage {
+      margin: 20px 48px 0;
+      border-radius: 18px;
+      height: 440px;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(-45deg,
+        oklch(0.18 0.020 55),
+        oklch(0.26 0.060 65),
+        oklch(0.32 0.100 75),
+        oklch(0.22 0.040 60));
+      background-size: 400% 400%;
+      animation: gradshift 14s ease infinite;
+      transform: scale(0.98);
+      transition: transform 0.9s 0.2s ease;
+    }
+    .hero-stage.vis { transform: scale(1); }
+
+    @keyframes gradshift {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Gold shimmer overlay */
+    .hero-stage::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 80% at 70% 40%, oklch(0.82 0.155 80 / 0.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .orb {
+      position: absolute; border-radius: 50%;
+      pointer-events: none; filter: blur(70px);
+      animation: orbfloat var(--d, 9s) ease-in-out infinite;
+    }
+    @keyframes orbfloat {
+      0%, 100% { transform: translate(0, 0); }
+      33%       { transform: translate(28px, -18px); }
+      66%       { transform: translate(-18px, 14px); }
+    }
+
+    .hero-socials {
+      position: absolute; right: 24px; top: 50%;
+      transform: translateY(-50%);
+      display: flex; flex-direction: column; gap: 8px;
+    }
+    .hero-social-btn {
+      width: 36px; height: 36px; border-radius: 7px;
+      background: oklch(1 0 0 / 0.10);
+      border: 1px solid oklch(1 0 0 / 0.18);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: background 0.2s;
+      color: oklch(0.82 0.155 80); font-size: 12px;
+      text-decoration: none; font-weight: 700;
+      font-family: 'Montserrat', sans-serif;
+    }
+    .hero-social-btn:hover { background: oklch(1 0 0 / 0.20); }
+
+    .hero-bottom {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 0 40px 40px;
+      background: linear-gradient(to top, oklch(0.10 0.012 50 / 0.70) 0%, transparent 100%);
+    }
+    .hero-avatars {
+      display: flex; align-items: center; margin-bottom: 14px;
+    }
+    .hero-avatar {
+      width: 34px; height: 34px; border-radius: 50%;
+      border: 2px solid oklch(0.82 0.155 80 / 0.60);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 10px; font-weight: 700;
+      font-family: 'Montserrat', sans-serif;
+      color: var(--dark); margin-right: -8px; flex-shrink: 0;
+    }
+    .hero-clients-label {
+      margin-left: 20px; font-size: 12px;
+      color: oklch(1 0 0 / 0.60); font-weight: 400;
+    }
+    .hero-headline {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(24px, 3vw, 44px);
+      font-weight: 800; color: white; line-height: 1.2;
+      max-width: 520px;
+    }
+    .hero-headline em {
+      font-style: normal;
+      color: var(--gold);
+    }
+
+    /* ── SERVICE TILES ───────────────────────────── */
+    .hero-tiles {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 10px; margin: 10px 48px 0;
+      transform: translateY(18px);
+      transition: transform 0.7s 0.5s ease;
+    }
+    .hero-tiles.vis { transform: translateY(0); }
+
+    .hero-tile {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 10px; padding: 16px 22px;
+      display: flex; align-items: center; gap: 14px;
+      cursor: pointer;
+      transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+    }
+    .hero-tile:hover {
+      border-color: var(--gold);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 28px oklch(0.82 0.155 80 / 0.15);
+    }
+    .tile-num {
+      font-size: 11px; font-weight: 700; color: var(--gold-dk);
+      font-family: 'Montserrat', sans-serif; letter-spacing: 0.05em;
+    }
+    .tile-label {
+      font-size: 13.5px; font-weight: 700; color: var(--text);
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    /* ── STATS BAND ──────────────────────────────── */
+    .stats-band {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      margin: 72px 0 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .stat-item {
+      padding: 36px 48px;
+      border-right: 1px solid var(--border);
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-num {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(40px, 4.2vw, 60px);
+      font-weight: 900; line-height: 1;
+      letter-spacing: -0.01em;
+      color: var(--text);
+    }
+    .stat-num .acc { color: var(--gold-dk); }
+    .stat-label {
+      font-size: 13px; color: var(--muted);
+      margin-top: 8px; font-weight: 400;
+      text-wrap: pretty;
+    }
+
+    /* ── SECTION HEADER ──────────────────────────── */
+    .sec-hdr {
+      display: flex; align-items: baseline; gap: 20px;
+      padding: 80px 48px 40px;
+    }
+    .sec-hdr-border { border-top: 1px solid var(--border); }
+    .sec-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(30px, 4.5vw, 60px);
+      font-weight: 900; letter-spacing: 0em;
+      line-height: 1.05; color: var(--text);
+    }
+    .sec-tag {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 0.14em; color: var(--muted);
+      text-transform: uppercase; white-space: nowrap;
+      font-family: 'Montserrat', sans-serif;
+    }
+    .sec-tag::before {
+      content: ''; display: block; width: 8px; height: 8px;
+      border-radius: 2px; background: var(--gold); flex-shrink: 0;
+    }
+
+    /* ── SERVICES TABS ───────────────────────────── */
+    .svc-wrapper { margin: 0 48px; }
+
+    .svc-tabs {
+      display: grid; grid-template-columns: repeat(5, 1fr);
+      border: 1px solid var(--border);
+      border-radius: 12px 12px 0 0;
+      overflow: hidden;
+    }
+    .svc-tab {
+      padding: 18px 14px;
+      border-right: 1px solid var(--border);
+      cursor: pointer;
+      background: var(--bg-surface);
+      transition: background 0.2s;
+      display: flex; flex-direction: column; gap: 6px;
+    }
+    .svc-tab:last-child { border-right: none; }
+    .svc-tab:hover { background: var(--gold-lt); }
+    .svc-tab.active {
+      background: var(--white);
+      border-bottom: 2px solid var(--gold);
+      margin-bottom: -1px; position: relative; z-index: 1;
+    }
+    .svc-tab-num {
+      font-size: 10px; font-weight: 700;
+      color: var(--gold-dk); font-family: 'Montserrat', sans-serif;
+      letter-spacing: 0.08em;
+    }
+    .svc-tab-label {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13px; font-weight: 800;
+      color: var(--text); line-height: 1.2;
+    }
+    .svc-tab.active .svc-tab-label { color: var(--gold-dk); }
+
+    .svc-panel {
+      border: 1px solid var(--border);
+      border-top: none;
+      border-radius: 0 0 12px 12px;
+      background: var(--white);
+      display: grid; grid-template-columns: 1fr 1.8fr;
+      overflow: hidden; min-height: 340px;
+    }
+
+    .svc-panel-img {
+      background: var(--gold-lt);
+      position: relative; overflow: hidden;
+    }
+    .svc-panel-img::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: repeating-linear-gradient(
+        45deg,
+        oklch(0.82 0.155 80 / 0.14) 0px,
+        oklch(0.82 0.155 80 / 0.14) 1.5px,
+        transparent 1.5px,
+        transparent 12px
+      );
+    }
+    .svc-panel-img::after {
+      content: attr(data-hint);
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-family: monospace; font-size: 11px;
+      color: var(--gold-dk); text-align: center; padding: 24px;
+      line-height: 1.6;
+    }
+
+    .svc-panel-body {
+      padding: 44px 48px;
+      display: flex; flex-direction: column; gap: 16px;
+      border-left: 1px solid var(--border);
+    }
+    .svc-panel-num {
+      font-size: 10px; font-weight: 700;
+      color: var(--gold-dk); letter-spacing: 0.12em;
+      font-family: 'Montserrat', sans-serif;
+    }
+    .svc-panel-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(22px, 2.5vw, 34px);
+      font-weight: 900; color: var(--text);
+      line-height: 1.1;
+    }
+    .svc-panel-desc {
+      font-size: 14px; color: var(--muted);
+      line-height: 1.75; max-width: 480px;
+      text-wrap: pretty;
+    }
+    .svc-chips { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 4px; }
+    .svc-chip {
+      border: 1px solid var(--border);
+      border-radius: 4px; padding: 6px 14px;
+      font-size: 11.5px; color: var(--muted);
+      font-weight: 600; font-family: 'Montserrat', sans-serif;
+      letter-spacing: 0.02em;
+    }
+
+    /* ── JOBS SECTION ────────────────────────────── */
+    .jobs-section {
+      margin: 0 48px 0;
+      padding: 80px 0;
+      border-top: 1px solid var(--border);
+    }
+    .jobs-header {
+      display: flex; align-items: flex-end;
+      justify-content: space-between; gap: 24px;
+      margin-bottom: 40px;
+    }
+    .jobs-cta-wrap {
+      display: flex; flex-direction: column; gap: 16px;
+      align-items: flex-end; flex-shrink: 0;
+    }
+    .jobs-desc {
+      font-size: 14px; color: var(--muted);
+      max-width: 480px; line-height: 1.7;
+      text-wrap: pretty;
+    }
+    .jobs-cta-btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--gold);
+      color: var(--dark);
+      padding: 16px 32px; border-radius: 8px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 14px; font-weight: 800;
+      letter-spacing: 0.02em;
+      text-decoration: none;
+      transition: background 0.25s, transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px oklch(0.82 0.155 80 / 0.30);
+    }
+    .jobs-cta-btn:hover {
+      background: var(--gold-dk); color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px oklch(0.54 0.138 72 / 0.35);
+    }
+    .jobs-cta-btn svg { flex-shrink: 0; }
+    .jobs-cards {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .job-card {
+      border: 1px solid var(--border);
+      border-radius: 12px; padding: 24px 26px;
+      background: var(--white);
+      display: flex; flex-direction: column; gap: 10px;
+      transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+    }
+    .job-card:hover {
+      border-color: var(--gold);
+      transform: translateY(-4px);
+      box-shadow: 0 14px 36px oklch(0.82 0.155 80 / 0.12);
+    }
+    .job-card-top { display: flex; align-items: center; justify-content: space-between; }
+    .job-dept {
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--gold-dk); font-family: 'Montserrat', sans-serif;
+    }
+    .job-type {
+      font-size: 11px; font-weight: 600;
+      background: var(--gold-lt); color: var(--gold-dk);
+      padding: 3px 10px; border-radius: 4px;
+      font-family: 'Montserrat', sans-serif;
+    }
+    .job-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 16px; font-weight: 800;
+      color: var(--text); line-height: 1.2;
+    }
+    .job-meta {
+      display: flex; align-items: center; gap: 14px;
+      font-size: 12px; color: var(--muted);
+    }
+    .job-meta span { display: flex; align-items: center; gap: 5px; }
+    .job-apply {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px; font-weight: 700;
+      color: var(--gold-dk); text-decoration: none;
+      letter-spacing: 0.02em; margin-top: 4px;
+      transition: gap 0.2s;
+    }
+    .job-apply:hover { gap: 10px; }
+    .jobs-more {
+      text-align: center; margin-top: 32px;
+    }
+    .jobs-more-link {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13px; font-weight: 700;
+      color: var(--muted); text-decoration: none;
+      letter-spacing: 0.04em;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 2px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .jobs-more-link:hover { color: var(--gold-dk); border-color: var(--gold); }
+
+    /* ── ABOUT (DARK PANEL) ──────────────────────── */
+    .about-panel {
+      margin: 80px 48px;
+      background: var(--dark);
+      border-radius: 22px;
+      padding: 70px;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 72px; align-items: center;
+    }
+
+    .about-img {
+      border-radius: 14px;
+      aspect-ratio: 4/3;
+      background: oklch(0.20 0.020 55);
+      position: relative; overflow: hidden;
+    }
+    .about-img::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: repeating-linear-gradient(
+        45deg,
+        oklch(0.82 0.155 80 / 0.06) 0px,
+        oklch(0.82 0.155 80 / 0.06) 1.5px,
+        transparent 1.5px,
+        transparent 12px
+      );
+    }
+    .about-img::after {
+      content: 'foto equipo / reunión corporativa';
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-family: monospace; font-size: 12px;
+      color: oklch(0.82 0.155 80 / 0.30); text-align: center; padding: 20px;
+    }
+
+    .about-label {
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 16px;
+      font-family: 'Montserrat', sans-serif;
+    }
+    .about-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(26px, 3vw, 44px);
+      font-weight: 900; letter-spacing: 0em;
+      line-height: 1.15; color: var(--white);
+      margin-bottom: 20px;
+    }
+    .about-body {
+      font-size: 14px; color: oklch(1 0 0 / 0.54);
+      line-height: 1.8; margin-bottom: 36px;
+      text-wrap: pretty;
+    }
+
+    .about-stats {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 20px; margin-bottom: 38px;
+      padding-top: 26px;
+      border-top: 1px solid oklch(1 0 0 / 0.10);
+    }
+    .astat-num {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 36px; font-weight: 900;
+      letter-spacing: -0.01em;
+      color: var(--gold); line-height: 1;
+    }
+    .astat-label { font-size: 12px; color: oklch(1 0 0 / 0.40); margin-top: 5px; }
+
+    .btn-row { display: flex; gap: 12px; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 24px; border-radius: 6px;
+      font-size: 13px; font-weight: 700;
+      cursor: pointer; text-decoration: none;
+      font-family: 'Montserrat', sans-serif;
+      letter-spacing: 0.03em;
+      transition: all 0.25s ease; border: none;
+    }
+    .btn-gold { background: var(--gold); color: var(--dark); }
+    .btn-gold:hover { background: var(--gold-dk); color: white; transform: translateY(-1px); }
+    .btn-ghost-w {
+      background: transparent;
+      border: 1px solid oklch(1 0 0 / 0.22);
+      color: oklch(1 0 0 / 0.70);
+    }
+    .btn-ghost-w:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* ── TESTIMONIALS ────────────────────────────── */
+    .testi-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 16px; padding: 0 48px 80px;
+    }
+    .testi-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px; padding: 30px;
+      transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+    }
+    .testi-card:hover {
+      border-color: var(--gold);
+      transform: translateY(-5px);
+      box-shadow: 0 18px 44px oklch(0.82 0.155 80 / 0.12);
+    }
+    .testi-stars { display: flex; gap: 3px; margin-bottom: 16px; }
+    .testi-stars span { color: var(--gold); font-size: 15px; }
+    .testi-quote {
+      font-size: 14px; color: var(--text);
+      line-height: 1.72; margin-bottom: 26px;
+      font-style: italic; text-wrap: pretty;
+    }
+    .testi-author { display: flex; align-items: center; gap: 12px; }
+    .tav {
+      width: 42px; height: 42px; border-radius: 50%;
+      background: var(--gold-lt);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px; font-weight: 800;
+      color: var(--gold-dk); flex-shrink: 0;
+    }
+    .tav-name { font-weight: 700; font-size: 13.5px; color: var(--text); font-family: 'Montserrat', sans-serif; }
+    .tav-role { font-size: 12px; color: var(--muted); }
+
+    /* ── CTA BAND ────────────────────────────────── */
+    .cta-band {
+      margin: 0 48px 80px;
+      background: var(--dark);
+      border-radius: 22px; padding: 68px 64px;
+      display: flex; align-items: center;
+      justify-content: space-between; gap: 48px;
+      position: relative; overflow: hidden;
+    }
+    .cta-band::before {
+      content: '';
+      position: absolute; right: -60px; top: -80px;
+      width: 340px; height: 340px; border-radius: 50%;
+      background: oklch(0.82 0.155 80 / 0.10);
+      filter: blur(50px); pointer-events: none;
+    }
+    .cta-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(24px, 3vw, 42px);
+      font-weight: 900; color: white;
+      letter-spacing: 0em; line-height: 1.2;
+      max-width: 500px; text-wrap: pretty;
+      position: relative;
+    }
+    .cta-title em { font-style: normal; color: var(--gold); }
+    .cta-actions { display: flex; gap: 12px; flex-shrink: 0; position: relative; }
+    .btn-ghost-dk {
+      background: transparent;
+      border: 1px solid oklch(1 0 0 / 0.22);
+      color: oklch(1 0 0 / 0.70);
+    }
+    .btn-ghost-dk:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* ── TICKER ──────────────────────────────────── */
+    .ticker-wrap {
+      overflow: hidden; white-space: nowrap;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 13px 0; margin-top: 72px;
+      background: var(--bg-surface);
+    }
+    .ticker-track {
+      display: inline-flex;
+      animation: ticker 28s linear infinite;
+    }
+    .ticker-track:hover { animation-play-state: paused; }
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    .ticker-item {
+      display: inline-flex; align-items: center; gap: 12px;
+      padding: 0 38px; font-size: 11.5px;
+      font-weight: 700; color: var(--muted);
+      letter-spacing: 0.10em; text-transform: uppercase;
+      font-family: 'Montserrat', sans-serif;
+    }
+    .ticker-item::after {
+      content: '◆'; font-size: 7px; color: var(--gold);
+    }
+
+    /* ── FOOTER ──────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 48px;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 48px; align-items: end;
+    }
+    .footer-logo { height: 48px; width: auto; display: block; margin-bottom: 14px; }
+    .footer-desc { font-size: 13px; color: var(--muted); max-width: 280px; line-height: 1.6; }
+    .footer-copy { font-size: 12px; color: var(--muted); margin-top: 22px; }
+
+    .footer-links { display: flex; flex-wrap: wrap; gap: 10px 28px; list-style: none; }
+    .footer-links a {
+      font-size: 13px; font-weight: 600;
+      font-family: 'Montserrat', sans-serif;
+      letter-spacing: 0.02em; color: var(--muted);
+      text-decoration: none; transition: color 0.2s;
+      text-transform: uppercase; font-size: 11.5px;
+    }
+    .footer-links a:hover { color: var(--gold-dk); }
+
+    /* ── REVEAL ──────────────────────────────────── */
+    .rv {
+      transform: translateY(26px);
+      transition: transform 0.7s ease;
+    }
+    .rv.d1 { transition-delay: 0.10s; }
+    .rv.d2 { transition-delay: 0.20s; }
+    .rv.vis { transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ──────────────────────────────────────────── -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">
+    <img src="assets/nexo-logo.svg" alt="NEXO SAS">
+  </a>
+  <ul class="nav-links">
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#empleos">Empleos</a></li>
+    <li><a href="#testimonios">Clientes</a></li>
+    <li><a href="#contacto" class="nav-cta">Contáctanos</a></li>
+  </ul>
+</nav>
+
+<!-- ── HERO ─────────────────────────────────────────── -->
+<div class="hero-brand-wrap" id="heroBrand">
+  <div class="hero-brand">NEXO<sup>®</sup>_SAS</div>
+  <div class="hero-brand-tagline">RRHH · Colombia</div>
+</div>
+
+<div class="hero-stage" id="heroStage">
+  <div class="orb" style="width:300px;height:300px;background:oklch(0.82 0.155 80 / 0.18);top:-80px;left:50%;--d:10s;"></div>
+  <div class="orb" style="width:180px;height:180px;background:oklch(0.65 0.12 70 / 0.20);top:55%;left:72%;--d:7s;animation-delay:-3s;"></div>
+  <div class="orb" style="width:110px;height:110px;background:oklch(0.82 0.155 80 / 0.14);top:18%;left:32%;--d:12s;animation-delay:-6s;"></div>
+
+  <div class="hero-socials">
+    <a class="hero-social-btn" href="#">in</a>
+    <a class="hero-social-btn" href="#">ig</a>
+    <a class="hero-social-btn" href="#">fb</a>
+  </div>
+
+  <div class="hero-bottom">
+    <div class="hero-avatars">
+      <div class="hero-avatar" style="background:var(--gold);">AC</div>
+      <div class="hero-avatar" style="background:oklch(0.75 0.14 82);">ML</div>
+      <div class="hero-avatar" style="background:oklch(0.70 0.12 75);">PG</div>
+      <div class="hero-avatar" style="background:var(--gold);">RV</div>
+      <span class="hero-clients-label">+500 empresas confían en nosotros</span>
+    </div>
+    <div class="hero-headline">
+      Conectamos <em>talento</em><br>con el futuro de tu empresa
+    </div>
+  </div>
+</div>
+
+<div class="hero-tiles" id="heroTiles">
+  <div class="hero-tile" onclick="scrollTo({top: document.getElementById('servicios').offsetTop - 80, behavior:'smooth'})">
+    <span class="tile-num">(01)</span>
+    <span class="tile-label">Reclutamiento de Candidatos</span>
+  </div>
+  <div class="hero-tile" onclick="scrollTo({top: document.getElementById('servicios').offsetTop - 80, behavior:'smooth'})">
+    <span class="tile-num">(02)</span>
+    <span class="tile-label">Selección de Personal</span>
+  </div>
+  <div class="hero-tile" onclick="scrollTo({top: document.getElementById('servicios').offsetTop - 80, behavior:'smooth'})">
+    <span class="tile-num">(03)</span>
+    <span class="tile-label">Contratación Temporal</span>
+  </div>
+</div>
+
+<!-- ── STATS ─────────────────────────────────────────── -->
+<div class="stats-band rv" id="statsBand">
+  <div class="stat-item">
+    <div class="stat-num"><span class="acc" id="s0">0</span>+</div>
+    <div class="stat-label">Años de experiencia en el mercado colombiano</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num"><span class="acc" id="s1">0</span>+</div>
+    <div class="stat-label">Empresas atendidas a lo largo del país</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num"><span class="acc" id="s2">0</span>K+</div>
+    <div class="stat-label">Talentos conectados exitosamente</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num"><span class="acc">98</span>%</div>
+    <div class="stat-label">Tasa de satisfacción de clientes</div>
+  </div>
+</div>
+
+<!-- ── TICKER ────────────────────────────────────────── -->
+<div class="ticker-wrap">
+  <div class="ticker-track">
+    <span class="ticker-item">Reclutamiento</span>
+    <span class="ticker-item">Selección de Personal</span>
+    <span class="ticker-item">Contratación Temporal</span>
+    <span class="ticker-item">Consultoría RRHH</span>
+    <span class="ticker-item">Desarrollo Organizacional</span>
+    <span class="ticker-item">Gestión del Talento</span>
+    <span class="ticker-item">Nómina y Outsourcing</span>
+    <span class="ticker-item">Formación Empresarial</span>
+    <span class="ticker-item">Reclutamiento</span>
+    <span class="ticker-item">Selección de Personal</span>
+    <span class="ticker-item">Contratación Temporal</span>
+    <span class="ticker-item">Consultoría RRHH</span>
+    <span class="ticker-item">Desarrollo Organizacional</span>
+    <span class="ticker-item">Gestión del Talento</span>
+    <span class="ticker-item">Nómina y Outsourcing</span>
+    <span class="ticker-item">Formación Empresarial</span>
+  </div>
+</div>
+
+<!-- ── SERVICES ──────────────────────────────────────── -->
+<section id="servicios">
+  <div class="sec-hdr sec-hdr-border rv">
+    <h2 class="sec-title">Nuestros Servicios</h2>
+    <div class="sec-tag">Servicios</div>
+  </div>
+
+  <div class="svc-wrapper rv">
+    <!-- Tab strip -->
+    <div class="svc-tabs">
+      <div class="svc-tab active" onclick="activateTab(0)">
+        <span class="svc-tab-num">(01)</span>
+        <span class="svc-tab-label">Reclutamiento de Candidatos</span>
+      </div>
+      <div class="svc-tab" onclick="activateTab(1)">
+        <span class="svc-tab-num">(02)</span>
+        <span class="svc-tab-label">Selección de Personal</span>
+      </div>
+      <div class="svc-tab" onclick="activateTab(2)">
+        <span class="svc-tab-num">(03)</span>
+        <span class="svc-tab-label">Contratación Temporal</span>
+      </div>
+      <div class="svc-tab" onclick="activateTab(3)">
+        <span class="svc-tab-num">(04)</span>
+        <span class="svc-tab-label">Consultoría RRHH</span>
+      </div>
+      <div class="svc-tab" onclick="activateTab(4)">
+        <span class="svc-tab-num">(05)</span>
+        <span class="svc-tab-label">Formación y Desarrollo</span>
+      </div>
+    </div>
+    <!-- Panel -->
+    <div class="svc-panel" id="svcPanel">
+      <div class="svc-panel-img" id="svcImg" data-hint="foto candidatos / entrevista grupal"></div>
+      <div class="svc-panel-body">
+        <div class="svc-panel-num" id="svcNum">SERVICE (01)</div>
+        <div class="svc-panel-title" id="svcTitle">Reclutamiento de Candidatos</div>
+        <div class="svc-panel-desc" id="svcDesc">Identificamos y atraemos el talento idóneo mediante headhunting, portales especializados y nuestra red de profesionales en todo el país.</div>
+        <div class="svc-chips" id="svcChips">
+          <span class="svc-chip">Head Hunting</span>
+          <span class="svc-chip">Atracción de Talento</span>
+          <span class="svc-chip">Perfiles Técnicos</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ABOUT ─────────────────────────────────────────── -->
+<section id="nosotros">
+  <div class="about-panel rv">
+    <div class="about-img"></div>
+    <div>
+      <div class="about-label">Sobre Nosotros</div>
+      <h2 class="about-title">Potencializa tu empresa con NEXO</h2>
+      <p class="about-body">Somos una empresa comprometida con Colombia y con el desarrollo del talento humano. Con más de tres décadas de experiencia, brindamos soluciones prácticas y eficaces a los requerimientos de Recursos Humanos de nuestros clientes, acompañándolos en cada etapa de su crecimiento.</p>
+      <div class="about-stats">
+        <div>
+          <div class="astat-num">38+</div>
+          <div class="astat-label">Años de trayectoria</div>
+        </div>
+        <div>
+          <div class="astat-num">500+</div>
+          <div class="astat-label">Clientes activos</div>
+        </div>
+        <div>
+          <div class="astat-num">15+</div>
+          <div class="astat-label">Ciudades de Colombia</div>
+        </div>
+      </div>
+      <div class="btn-row">
+        <a href="#contacto" class="btn btn-gold">Conoce Más →</a>
+        <a href="#servicios" class="btn btn-ghost-w">Ver Servicios</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── JOBS ─────────────────────────────────────────── -->
+<section id="empleos">
+  <div class="jobs-section rv">
+    <div class="jobs-header">
+      <div>
+        <div class="sec-tag" style="margin-bottom:14px;">Ofertas de Empleo</div>
+        <h2 class="sec-title">Trabaja con nosotros</h2>
+        <p class="jobs-desc" style="margin-top:14px;">Explora las vacantes disponibles y da el siguiente paso en tu carrera profesional. Únete a empresas líderes en Colombia a través de NEXO SAS.</p>
+      </div>
+      <div class="jobs-cta-wrap">
+        <a href="#" class="jobs-cta-btn" id="jobsPortalBtn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+          Ver todas las vacantes →
+        </a>
+        <p style="font-size:11px;color:var(--muted);text-align:right;font-family:'Montserrat',sans-serif;letter-spacing:0.04em;">Portal en construcción · Próximamente disponible</p>
+      </div>
+    </div>
+    <div class="jobs-cards">
+      <div class="job-card">
+        <div class="job-card-top">
+          <span class="job-dept">Logística</span>
+          <span class="job-type">Temporal</span>
+        </div>
+        <div class="job-title">Coordinador de Logística</div>
+        <div class="job-meta">
+          <span>📍 Bogotá</span>
+          <span>⏱ Tiempo completo</span>
+        </div>
+        <a href="#" class="job-apply">Postularme →</a>
+      </div>
+      <div class="job-card">
+        <div class="job-card-top">
+          <span class="job-dept">Tecnología</span>
+          <span class="job-type">Permanente</span>
+        </div>
+        <div class="job-title">Desarrollador Full Stack</div>
+        <div class="job-meta">
+          <span>📍 Medellín</span>
+          <span>⏱ Tiempo completo</span>
+        </div>
+        <a href="#" class="job-apply">Postularme →</a>
+      </div>
+      <div class="job-card">
+        <div class="job-card-top">
+          <span class="job-dept">Ventas</span>
+          <span class="job-type">Permanente</span>
+        </div>
+        <div class="job-title">Ejecutivo Comercial Senior</div>
+        <div class="job-meta">
+          <span>📍 Cali</span>
+          <span>⏱ Tiempo completo</span>
+        </div>
+        <a href="#" class="job-apply">Postularme →</a>
+      </div>
+    </div>
+    <div class="jobs-more">
+      <a href="#" class="jobs-more-link">Ver más vacantes disponibles</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── TESTIMONIALS ──────────────────────────────────── -->
+<section id="testimonios">
+  <div class="sec-hdr sec-hdr-border rv">
+    <h2 class="sec-title">Lo que dicen nuestros clientes</h2>
+    <div class="sec-tag">Testimonios</div>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card rv">
+      <div class="testi-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+      <p class="testi-quote">"NEXO transformó nuestra manera de reclutar. En tiempo récord encontraron los perfiles exactos que necesitábamos para nuestra expansión regional. Un aliado estratégico de verdad."</p>
+      <div class="testi-author">
+        <div class="tav">MR</div>
+        <div>
+          <div class="tav-name">María Rodríguez</div>
+          <div class="tav-role">Directora de RRHH — Grupo XYZ</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card rv d1">
+      <div class="testi-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+      <p class="testi-quote">"Su acompañamiento en contratación temporal nos dio la flexibilidad que necesitábamos durante nuestro pico de producción. Excelente gestión y total transparencia."</p>
+      <div class="testi-author">
+        <div class="tav">CP</div>
+        <div>
+          <div class="tav-name">Carlos Pedraza</div>
+          <div class="tav-role">CEO — Manufactura del Valle S.A.</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card rv d2">
+      <div class="testi-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+      <p class="testi-quote">"Llevamos 5 años trabajando con NEXO. Su equipo entiende profundamente nuestra cultura organizacional y eso marca toda la diferencia en cada proceso de selección."</p>
+      <div class="testi-author">
+        <div class="tav">LG</div>
+        <div>
+          <div class="tav-name">Laura Gómez</div>
+          <div class="tav-role">Gerente General — TechCo Colombia</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ───────────────────────────────────────────── -->
+<div class="cta-band rv" id="contacto">
+  <div class="cta-title">¿Listo para encontrar el <em>talento</em> que tu empresa necesita?</div>
+  <div class="cta-actions">
+    <a href="mailto:contacto@nexosas.com" class="btn btn-gold">Contáctanos →</a>
+    <a href="#empleos" id="empleos" class="btn btn-ghost-dk">Ofertas de Empleo</a>
+  </div>
+</div>
+
+<!-- ── FOOTER ────────────────────────────────────────── -->
+<footer>
+  <div>
+    <img src="assets/nexo-logo.svg" alt="NEXO SAS" class="footer-logo">
+    <p class="footer-desc">Consultoría en Recursos Humanos · Comprometidos con Colombia · Desde 1987</p>
+    <p class="footer-copy">© 2026 NEXO SAS. Todos los derechos reservados.</p>
+  </div>
+  <div>
+    <ul class="footer-links">
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#nosotros">Nosotros</a></li>
+      <li><a href="#empleos">Empleos</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+      <li><a href="#">LinkedIn</a></li>
+      <li><a href="#">Instagram</a></li>
+      <li><a href="#">Privacidad</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script>
+  // Hero entrance
+  setTimeout(() => document.getElementById('heroBrand').classList.add('vis'), 80);
+  setTimeout(() => document.getElementById('heroStage').classList.add('vis'), 200);
+  setTimeout(() => document.getElementById('heroTiles').classList.add('vis'), 400);
+
+  // Scroll reveal
+  const revealObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis'); });
+  }, { threshold: 0.10, rootMargin: '0px 0px -28px 0px' });
+  document.querySelectorAll('.rv').forEach(el => revealObs.observe(el));
+
+  // Counter animation
+  function animCount(el, target, duration) {
+    let start;
+    const step = ts => {
+      if (!start) start = ts;
+      const p = Math.min((ts - start) / duration, 1);
+      const ease = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(ease * target).toLocaleString('es-CO');
+      if (p < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }
+
+  let countered = false;
+  new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting && !countered) {
+      countered = true;
+      animCount(document.getElementById('s0'), 38, 1600);
+      animCount(document.getElementById('s1'), 500, 1800);
+      animCount(document.getElementById('s2'), 8, 2000);
+    }
+  }, { threshold: 0.4 }).observe(document.getElementById('statsBand'));
+
+  // Service tabs
+  const svcData = [
+    { num: 'SERVICE (01)', title: 'Reclutamiento de Candidatos', desc: 'Identificamos y atraemos el talento idóneo mediante headhunting, portales especializados y nuestra red de profesionales en todo el país.', hint: 'foto candidatos / entrevista grupal', chips: ['Head Hunting','Atracción de Talento','Perfiles Técnicos'] },
+    { num: 'SERVICE (02)', title: 'Selección de Personal', desc: 'Evaluamos competencias, cultura organizacional y potencial de cada candidato con herramientas validadas para garantizar la contratación más acertada.', hint: 'foto evaluación / assessment center', chips: ['Assessment Centers','Pruebas Psicotécnicas','Entrevistas por Competencias'] },
+    { num: 'SERVICE (03)', title: 'Contratación Temporal', desc: 'Soluciones flexibles para proyectos específicos y picos de demanda. Gestionamos toda la carga administrativa y legal de sus colaboradores temporales.', hint: 'foto firma de contrato / equipo temporal', chips: ['Outsourcing','Personal en Misión','Administración de Nómina'] },
+    { num: 'SERVICE (04)', title: 'Consultoría en RRHH', desc: 'Acompañamos a su organización en la gestión integral del capital humano: desde la estrategia de talento hasta la transformación organizacional.', hint: 'foto reunión estratégica / consultoría', chips: ['Clima Organizacional','Diseño de Cargos','Transformación Cultural'] },
+    { num: 'SERVICE (05)', title: 'Formación y Desarrollo', desc: 'Programas de capacitación diseñados a medida para potenciar el desempeño y la motivación de sus equipos en toda Colombia.', hint: 'foto capacitación / taller formativo', chips: ['Capacitación In-house','Coaching Ejecutivo','Liderazgo'] }
+  ];
+
+  function activateTab(idx) {
+    document.querySelectorAll('.svc-tab').forEach((t, i) => t.classList.toggle('active', i === idx));
+    const d = svcData[idx];
+    document.getElementById('svcNum').textContent = d.num;
+    document.getElementById('svcTitle').textContent = d.title;
+    document.getElementById('svcDesc').textContent = d.desc;
+    document.getElementById('svcImg').setAttribute('data-hint', d.hint);
+    document.getElementById('svcChips').innerHTML = d.chips.map(c => `<span class="svc-chip">${c}</span>`).join('');
+  }
+
+  // Nav scroll
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+  }, { passive: true });
+</script>
+</body>
+</html>
