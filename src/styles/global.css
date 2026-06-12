@@ -711,3 +711,132 @@ footer {
   opacity: 1;
   transform: translateY(-50%) translateX(-4px);
 }
+
+/* ── SOCIAL MÓVIL (desktop: oculto) ─────────── */
+.hero-socials-mobile { display: none; }
+
+/* ── HAMBURGER (desktop: oculto) ─────────────── */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  flex-shrink: 0;
+}
+.nav-hamburger span {
+  display: block;
+  width: 22px; height: 2px;
+  background: var(--text);
+  border-radius: 2px;
+  transition: all 0.2s;
+}
+
+/* ── RESPONSIVE 768px ────────────────────────── */
+@media (max-width: 768px) {
+
+  /* Navbar */
+  nav { padding: 12px 20px; position: relative; }
+  .nav-hamburger { display: flex; }
+  .nav-links {
+    display: none;
+    position: absolute; top: 100%; left: 0; right: 0;
+    flex-direction: column;
+    background: oklch(0.985 0.006 78 / 0.97);
+    backdrop-filter: blur(20px) saturate(1.5);
+    border-bottom: 1px solid var(--border);
+    padding: 8px 20px 16px;
+    gap: 0;
+    list-style: none;
+    z-index: 100;
+  }
+  .nav-links.open { display: flex; }
+  .nav-links li { border-bottom: 1px solid var(--border); }
+  .nav-links li:last-child { border-bottom: none; }
+  .nav-links a { padding: 14px 0; display: block; }
+  .nav-cta {
+    display: inline-flex !important;
+    margin: 10px 0 !important;
+    padding: 10px 22px !important;
+    border-radius: 6px;
+  }
+
+  /* Hero */
+  .hero-brand-wrap { padding: 88px 20px 0; }
+  .hero-stage { margin: 14px 20px 0; height: 300px; }
+  .hero-bottom { padding: 0 20px 24px; }
+  .hero-headline { font-size: clamp(20px, 5.5vw, 32px); max-width: 100%; }
+  .hero-tiles { grid-template-columns: 1fr; margin: 10px 20px 0; }
+  .ticker-wrap { margin-top: 40px; }
+
+  /* Diferenciadores */
+  .stats-band { grid-template-columns: 1fr 1fr; margin: 48px 0 0; }
+  .stat-item { padding: 24px 20px; border-right: none; border-bottom: 1px solid var(--border); }
+  .stat-item:nth-child(odd) { border-right: 1px solid var(--border); }
+  .stat-item:last-child { border-bottom: none; }
+
+  /* Section headers */
+  .sec-hdr { padding: 48px 20px 24px; flex-wrap: wrap; gap: 8px; }
+
+  /* Servicios */
+  .svc-wrapper { margin: 0 20px; }
+  .svc-tabs { grid-template-columns: 1fr; border-radius: 12px 12px 0 0; }
+  .svc-tab { border-right: none; border-bottom: 1px solid var(--border); padding: 14px 16px; }
+  .svc-tab:last-child { border-bottom: none; }
+  .svc-panel { grid-template-columns: 1fr; min-height: unset; }
+  .svc-panel-img { min-height: 220px; }
+  .svc-panel-body { padding: 28px 24px; border-left: none; border-top: 1px solid var(--border); }
+
+  /* Proceso */
+  .proceso-wrap { padding: 0 20px 48px; }
+  .proceso-timeline { grid-template-columns: 1fr; }
+  .proceso-timeline::before { display: none; }
+  .proceso-step { padding: 0 0 32px; }
+  .proceso-step:last-child { padding-bottom: 0; }
+
+  /* Sobre Nosotros */
+  .about-panel { grid-template-columns: 1fr; padding: 32px 24px; margin: 40px 20px; gap: 28px; }
+  .about-img { min-height: 240px; }
+  .about-tab-strip { flex-wrap: wrap; }
+
+  /* Empleos */
+  .jobs-section { margin: 0 20px; padding: 48px 0; }
+  .jobs-header { flex-direction: column; align-items: flex-start; gap: 20px; }
+  .jobs-cta-wrap { align-items: flex-start; width: 100%; }
+  .jobs-cta-btn { width: 100%; justify-content: center; }
+  .jobs-cards { grid-template-columns: 1fr; }
+
+  /* CTA Band */
+  .cta-band { flex-direction: column; align-items: flex-start; margin: 0 20px 48px; padding: 36px 28px; gap: 24px; }
+  .cta-title { max-width: 100%; }
+  .cta-actions { flex-wrap: wrap; width: 100%; }
+  .cta-actions .btn { flex: 1; justify-content: center; }
+
+  /* Footer */
+  footer { grid-template-columns: 1fr; padding: 32px 20px; gap: 28px; align-items: start; }
+}
+
+/* ── RESPONSIVE 480px ────────────────────────── */
+@media (max-width: 480px) {
+  .stats-band { grid-template-columns: 1fr; }
+  .stat-item:nth-child(odd) { border-right: none; }
+  .stat-item:last-child { border-bottom: none; }
+  .stat-item:nth-last-child(2) { border-bottom: 1px solid var(--border); }
+  .hero-socials { display: none; }
+  .hero-socials-mobile {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 12px 20px 0;
+  }
+  .hero-socials-mobile .hero-social-btn {
+    background: var(--gold-lt);
+    border-color: var(--border);
+    color: var(--gold-dk);
+  }
+  .about-tab-strip .about-tab { flex: 1; text-align: center; }
+  .cta-actions .btn { min-width: 0; }
+}
