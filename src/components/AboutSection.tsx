@@ -47,7 +47,16 @@ export default function AboutSection() {
   return (
     <section id="nosotros">
       <div className="about-panel rv" ref={ref}>
-        <div className="about-img" />
+        <div className="about-img">
+          <video
+            className="about-video"
+            src="/videos/about.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+          />
+        </div>
         <div>
           <div className="about-label">Sobre Nosotros</div>
           <h2 className="about-title">Potencializa tu empresa con NEXO</h2>

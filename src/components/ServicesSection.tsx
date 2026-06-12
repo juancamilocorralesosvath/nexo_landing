@@ -42,7 +42,9 @@ export default function ServicesSection() {
 
         {/* Panel */}
         <div className="svc-panel">
-          <div className="svc-panel-img" data-hint={current.hint} />
+          <div className="svc-panel-img">
+            <img src={current.image} alt={current.hint} className="svc-panel-photo" />
+          </div>
           <div className="svc-panel-body">
             <div className="svc-panel-num">{current.num}</div>
             <div className="svc-panel-title">{current.title}</div>

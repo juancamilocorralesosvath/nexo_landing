@@ -7,6 +7,7 @@ import JobsSection from './components/JobsSection';
 import ProcessSection from './components/ProcessSection';
 import CtaBand from './components/CtaBand';
 import Footer from './components/Footer';
+import WhatsAppButton from './components/WhatsAppButton';
 
 export default function App() {
   return (
@@ -22,6 +23,7 @@ export default function App() {
         <CtaBand />
       </main>
       <Footer />
+      <WhatsAppButton />
     </>
   );
 }
