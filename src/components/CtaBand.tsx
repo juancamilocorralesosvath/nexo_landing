@@ -20,7 +20,7 @@ export default function CtaBand() {
         ¿Listo para encontrar el <em>talento</em> que tu empresa necesita?
       </div>
       <div className="cta-actions">
-        <a href="mailto:contacto@nexosas.com" className="btn btn-gold">Contáctanos →</a>
+        <a href="https://wa.me/573187098012?text=hola!%20quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20los%20servicios%20de%20NEXO." target="_blank" rel="noopener noreferrer" className="btn btn-gold">Contáctanos →</a>
         <a href="#empleos" className="btn btn-ghost-dk">Ofertas de Empleo</a>
       </div>
     </div>

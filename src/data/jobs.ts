@@ -1,31 +1,26 @@
-export interface Job {
-  department: string;
-  type: 'Temporal' | 'Permanente';
+export interface Step {
+  number: string;
   title: string;
-  city: string;
-  schedule: string;
+  description: string;
 }
 
-export const jobs: Job[] = [
+export const steps: Step[] = [
   {
-    department: 'Logística',
-    type: 'Temporal',
-    title: 'Coordinador de Logística',
-    city: 'Bogotá',
-    schedule: 'Tiempo completo',
+    number: '01',
+    title: 'Regístrate en la plataforma',
+    description:
+      'Crea tu perfil profesional en minutos. Sube tu hoja de vida y cuéntanos qué tipo de oportunidad estás buscando.',
   },
   {
-    department: 'Tecnología',
-    type: 'Permanente',
-    title: 'Desarrollador Full Stack',
-    city: 'Medellín',
-    schedule: 'Tiempo completo',
+    number: '02',
+    title: 'Explora vacantes disponibles',
+    description:
+      'Accede a ofertas verificadas en múltiples sectores. Filtra por ciudad, área o tipo de contrato.',
   },
   {
-    department: 'Ventas',
-    type: 'Permanente',
-    title: 'Ejecutivo Comercial Senior',
-    city: 'Cali',
-    schedule: 'Tiempo completo',
+    number: '03',
+    title: 'Postúlate con un clic',
+    description:
+      'Envía tu aplicación directamente desde la plataforma. Nuestro equipo conecta tu perfil con las empresas ideales.',
   },
 ];
