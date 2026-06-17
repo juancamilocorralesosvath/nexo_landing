@@ -29,7 +29,7 @@ export default function JobsSection() {
           </div>
           <div className="jobs-cta-wrap">
             <a
-              href="https://wa.me/573187098012?text=hola!%20quiero%20conocer%20las%20vacantes%20disponibles."
+              href="https://www.instagram.com/nexosas/"
               target="_blank"
               rel="noopener noreferrer"
               className="jobs-cta-btn"
