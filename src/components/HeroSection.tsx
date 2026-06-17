@@ -73,13 +73,6 @@ export default function HeroSection() {
         </div>
 
         <div className="hero-bottom">
-          <div className="hero-avatars">
-            <div className="hero-avatar" style={{ background: 'var(--gold)' }}>AC</div>
-            <div className="hero-avatar" style={{ background: 'oklch(0.75 0.14 82)' }}>ML</div>
-            <div className="hero-avatar" style={{ background: 'oklch(0.70 0.12 75)' }}>PG</div>
-            <div className="hero-avatar" style={{ background: 'var(--gold)' }}>RV</div>
-            <span className="hero-clients-label">+500 empresas confían en nosotros</span>
-          </div>
           <div className="hero-headline">
             Conectamos <em>talento</em><br />con el futuro de tu empresa
           </div>
